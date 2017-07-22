@@ -3,6 +3,6 @@ Ext.define('PM.store.Order', {
     model: 'PM.model.Order',
     groupField: 'project',
     data: [
-
+        {id : 1, name: 'just do it!'}
     ]
 });
