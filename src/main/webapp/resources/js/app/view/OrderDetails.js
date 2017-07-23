@@ -1,16 +1,16 @@
 Ext.define('PM.view.OrderDetails', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.orderdetails',
-
+    controller: 'order',
     title: 'Order Details',
     //features: [groupingFeature],
-    store: 'Order',
+    stores: ['OrderStore'],
 
     requires: [
-        //'Ticket.view.ticket.DetailModel',
-        //'Ticket.view.ticket.DetailController',
         'Ext.form.field.Text',
-        'Ext.form.field.ComboBox'
+        'Ext.form.field.ComboBox',
+        'PM.store.OrderStore',
+        'PM.controller.Order'
     ],
     tbar: [{
         text: 'Save',

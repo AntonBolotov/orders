@@ -1,5 +1,6 @@
-Ext.define('PM.model.Order', {
+Ext.define('PM.model.OrderModel', {
     extend: 'Ext.data.Model',
+    alias: 'orderModel',
     fields: [
         { name: 'id', type: 'integer' },
         { name: 'name', type: 'string' },
