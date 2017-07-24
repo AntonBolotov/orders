@@ -13,28 +13,17 @@ Ext.define('PM.view.OrderList', {
         'PM.store.OrderStore',
         'PM.controller.Order'
     ],
-
+    tbar: [{
+        text: 'New',
+        handler: 'onAddClick'
+    }],
     columns : [
-        {header: 'Id', dataIndex: 'id', flex: 1,},
-        {header: 'Name', dataIndex: 'name', flex: 1}
+        {header: 'Id', dataIndex: 'orderNumber', flex: 1,},
+        {header: 'Name', dataIndex: 'orderName', flex: 1}
     ],
     selModel : {
         listeners: {
             selectionchange: 'onProjectSearchClick'
         }
     },
-    //initComponent: function () {
-    //    this.columns = [
-    //        {header: 'Id', dataIndex: 'id', flex: 1,},
-    //        {header: 'Name', dataIndex: 'name', flex: 1}
-    //    ];
-    //
-    //    //this.selModel = {
-    //    //    listeners: {
-    //    //        selectionchange: 'onProjectSearchClick'
-    //    //    }
-    //    //};
-    //
-    //    this.callParent(arguments);
-    //}
 });

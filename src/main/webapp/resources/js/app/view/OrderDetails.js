@@ -1,5 +1,5 @@
 Ext.define('PM.view.OrderDetails', {
-    extend: 'Ext.panel.Panel',
+    extend: 'Ext.form.Panel',
     alias: 'widget.orderdetails',
     controller: 'order',
     title: 'Order Details',
@@ -7,7 +7,8 @@ Ext.define('PM.view.OrderDetails', {
     store: {
         type: 'orderStore'
     },
-
+    url: '/order/update',
+    method: 'GET',
     requires: [
         'Ext.form.field.Text',
         'Ext.form.field.ComboBox',
@@ -16,12 +17,14 @@ Ext.define('PM.view.OrderDetails', {
         'PM.store.StateStore',
         'PM.controller.Order'
     ],
+
     tbar: [{
         text: 'Save',
-        //handler: 'onSaveClick'
+        handler: 'onSaveClick'
     }],
     items: [{
         xtype: 'form',
+        alias: 'orderForm',
         border: false,
         maxWidth: 600,
         //height: 100,
@@ -38,6 +41,12 @@ Ext.define('PM.view.OrderDetails', {
                     enabled: false
             },
             {
+                xtype: 'textfield',
+                fieldLabel: 'Name',
+                name: 'orderName',
+                enabled: false
+            },
+            {
                 xtype: 'combo',
                 fieldLabel: 'To',
                 name: 'orderTo',
@@ -48,10 +57,6 @@ Ext.define('PM.view.OrderDetails', {
                 displayField: 'name',
                 valueField: 'id',
 
-                //bind: {
-                //    store: '{theTicket.project.users}',
-                //    value: '{theTicket.assigneeId}'
-                //}
             },
             {
                 xtype: 'combo',
@@ -74,15 +79,13 @@ Ext.define('PM.view.OrderDetails', {
                 queryMode: 'local',
                 displayField: 'name',
                 valueField: 'id',
-            },]
+            }]
     }],
 
-    initComponent: function () {
-        //this.columns = [
-        //    { header: 'Id', dataIndex: 'id', flex: 1 },
-        //    { header: 'Name', dataIndex: 'name', flex: 1}
-        //];
 
-        this.callParent(arguments);
-    }
+    loadRecord : function(item){
+        console.log(item);
+    },
+
+
 });
