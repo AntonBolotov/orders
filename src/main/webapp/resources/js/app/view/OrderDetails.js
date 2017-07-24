@@ -7,8 +7,8 @@ Ext.define('PM.view.OrderDetails', {
     store: {
         type: 'orderStore'
     },
-    url: '/order/update',
-    method: 'GET',
+    //url: '/order/update',
+    //method: 'GET',
     requires: [
         'Ext.form.field.Text',
         'Ext.form.field.ComboBox',

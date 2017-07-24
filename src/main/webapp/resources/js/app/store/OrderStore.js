@@ -8,37 +8,18 @@ Ext.define('PM.store.OrderStore', {
         'PM.model.OrderModel'
     ],
 
-    data: [
-        {orderNumber: 1, orderName: 'just do it!', orderTo: 3, orderFrom: 6, orderState: 2},
-        {orderNumber: 2, orderName: 'second', orderTo: 4, orderFrom: 8, orderState: 1}
-    ],
-
-    fields: ['id', 'name'],
-
     proxy: {
         type: 'ajax',
+        method: 'GET',
         api: {
-            read: 'order/get/all',
-            update: 'order/update'
+            read: '/order/get/all',
+            update: '/order/update',
+            destroy: '/order/remove',
+            create: '/order/create'
         },
         reader: {
             type: 'json',
             rootProperty: 'orders'
         }
     }
-
-    //proxy: {
-    //    type: 'ajax',
-    //    url: 'script/request.php?operazione=searchtarga',
-    //    reader: {
-    //        type: 'json',
-    //        root: 'auto',
-    //        totalProperty: 'results'
-    //    },
-    //    listeners : {
-    //        exception : function(proxyObj, response, operation, eOpts) {
-    //            console.log('failed');
-    //        }
-    //    }
-    //}
 });

@@ -16,14 +16,17 @@ Ext.define('PM.view.OrderList', {
     tbar: [{
         text: 'New',
         handler: 'onAddClick'
+    }, {
+        text: 'Remove',
+        handler: 'onRemoveClick'
     }],
-    columns : [
+    columns: [
         {header: 'Id', dataIndex: 'orderNumber', flex: 1,},
         {header: 'Name', dataIndex: 'orderName', flex: 1}
     ],
-    selModel : {
+    selModel: {
         listeners: {
-            selectionchange: 'onProjectSearchClick'
+            selectionchange: 'onSelectionChange'
         }
     },
 });

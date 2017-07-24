@@ -7,19 +7,13 @@ Ext.define('PM.store.StateStore', {
     requires: [
         'PM.model.StateModel'
     ],
-    //
-    //data: [
-    //    {id: 1, name: 'Success'},
-    //    {id: 2, name: 'Fail'},
-    //    {id: 3, name: 'Process'}
-    //],
 
-    fields: ['id', 'name'],
+    //fields: ['id', 'name'],
 
     proxy: {
         type: 'ajax',
         api: {
-            read: 'state/get/all',
+            read: '/state/get/all',
         },
         reader: {
             type: 'json',
