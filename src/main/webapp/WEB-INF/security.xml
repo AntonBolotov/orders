@@ -9,10 +9,13 @@
     http://www.springframework.org/schema/security/spring-security-4.2.xsd
     http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-4.2.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-
-    <http auto-config='true' use-expressions="true" create-session="ifRequired">
+    <context:component-scan base-package="com.myapp.orders.*"/>
+    <http auto-config='true'>
         <csrf disabled="true"/>
         <intercept-url pattern="/" access="hasRole('ANONYMOUS')"/>
     </http>
+
+    <global-method-security secured-annotations="enabled"/>
+
 
 </beans:beans>
