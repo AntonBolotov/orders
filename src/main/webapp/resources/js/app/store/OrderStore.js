@@ -4,16 +4,16 @@ Ext.define('PM.store.OrderStore', {
     model: 'PM.model.OrderModel',
     loaded: true,
     alias: 'store.orderStore',
-    //groupField: 'project',
     requires: [
         'PM.model.OrderModel'
     ],
-    fields: ['id','name'],
 
     data: [
-        {id : 1, name: 'just do it!'},
-        {id : 2, name: 'second'}
+        {id: 1, name: 'just do it!'},
+        {id: 2, name: 'second'}
     ],
+
+    fields: ['id', 'name'],
 
     proxy: {
         type: 'memory',

@@ -3,13 +3,17 @@ Ext.define('PM.view.OrderDetails', {
     alias: 'widget.orderdetails',
     controller: 'order',
     title: 'Order Details',
-    //features: [groupingFeature],
-    stores: ['OrderStore'],
+    stores: ['OrderStore', 'UserStore'],
+    store: {
+        type: 'orderStore'
+    },
 
     requires: [
         'Ext.form.field.Text',
         'Ext.form.field.ComboBox',
         'PM.store.OrderStore',
+        'PM.store.UserStore',
+        'PM.store.StateStore',
         'PM.controller.Order'
     ],
     tbar: [{
@@ -30,16 +34,19 @@ Ext.define('PM.view.OrderDetails', {
             {
                 xtype: 'textfield',
                 fieldLabel: '№',
-                name: 'orderNumber'
+                name: 'orderNumber',
+                    enabled: false
             },
             {
                 xtype: 'combo',
                 fieldLabel: 'To',
                 name: 'orderTo',
-                //store: states,
-                //queryMode: 'local',
-                //displayField: 'name',
-                //valueField: 'abbr',
+                store: {
+                    type: 'userStore'
+                },
+                queryMode: 'local',
+                displayField: 'name',
+                valueField: 'id',
 
                 //bind: {
                 //    store: '{theTicket.project.users}',
@@ -49,12 +56,24 @@ Ext.define('PM.view.OrderDetails', {
             {
                 xtype: 'combo',
                 fieldLabel: 'From',
-                name: 'orderFrom'
+                name: 'orderFrom',
+                store: {
+                    type: 'userStore'
+                },
+                queryMode: 'local',
+                displayField: 'name',
+                valueField: 'id',
             },
             {
                 xtype: 'combo',
                 fieldLabel: 'State',
-                name: 'orderState'
+                name: 'orderState',
+                store: {
+                    type: 'stateStore'
+                },
+                queryMode: 'local',
+                displayField: 'name',
+                valueField: 'id',
             },]
     }],
 

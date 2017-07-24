@@ -1,4 +1,4 @@
-Ext.define('PM.model.User', {
+Ext.define('PM.model.StateModel', {
     extend: 'Ext.data.Model',
     fields: [
         { name: 'id', type: 'int' },

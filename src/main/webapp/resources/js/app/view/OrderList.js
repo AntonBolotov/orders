@@ -3,8 +3,7 @@ Ext.define('PM.view.OrderList', {
     alias: 'widget.orderList',
     controller: 'order',
     title: 'Orders',
-    //stores: ['OrderStore'],
-    //store: Ext.getStore('PM.store.OrderStore'),
+
     store: {
         type: 'orderStore'
     },
