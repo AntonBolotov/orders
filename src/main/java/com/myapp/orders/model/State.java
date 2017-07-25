@@ -1,7 +1,10 @@
 package com.myapp.orders.model;
 
+/** Описание статуса */
 public class State {
+    /** Идентификатор статуса */
     private Integer id;
+    /** Название статуса */
     private String name;
 
     public State(Integer id, String name) {

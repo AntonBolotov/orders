@@ -6,9 +6,6 @@ Ext.application({
         'PM.view.OrderList',
         'PM.view.OrderDetails'
     ],
-    controllers: [
-        'MainController'
-    ],
 
     launch: function () {
         Ext.create('Ext.container.Viewport', {

@@ -14,10 +14,16 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.myapp.orders.model.Order;
 
+/** Контроллер обработки заявок */
 @Controller
 @RequestMapping(value = "order")
 public class OrderController {
 
+    /**
+     * Изменение заявки
+     * @param order данные по заявке
+     * @return
+     */
     @RequestMapping(value = "update", method = {RequestMethod.POST})
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
@@ -29,18 +35,30 @@ public class OrderController {
         return result;
     }
 
+    /**
+     * Удаление заявки
+     * @param order данные по заявке
+     */
     @RequestMapping(value = "remove", method = {RequestMethod.POST})
     @ResponseStatus(value = HttpStatus.OK)
     public void removeOrder(@RequestBody Order order)  {
         System.out.println(order);
     }
 
+    /**
+     * Создание заявки
+     * @param order данные по заявке
+     */
     @RequestMapping(value = "create", method = {RequestMethod.POST})
     @ResponseStatus(value = HttpStatus.OK)
     public void createOrder(@RequestBody Order order)  {
         System.out.println(order);
     }
 
+    /**
+     * получение списка заявок
+     * @return
+     */
     @GetMapping(value = "get/all")
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody

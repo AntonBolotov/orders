@@ -1,7 +1,10 @@
 package com.myapp.orders.model;
 
+/** Описание пользователя */
 public class User {
+    /** Идентификатор пользователя */
     private Integer id;
+    /** Имя пользователя */
     private String name;
 
     public User(Integer id, String name) {

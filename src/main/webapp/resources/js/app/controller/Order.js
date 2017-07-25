@@ -3,7 +3,6 @@ Ext.define('PM.controller.Order', {
     alias: 'controller.order',
     stores: ['OrderStore', 'UserStore', 'StateStore'],
     models: ['OrderModel', 'UserModel', 'StateModel'],
-    //views: ['OrderList'],
     requires: [
         'PM.store.OrderStore',
         'PM.model.OrderModel',
@@ -67,6 +66,11 @@ Ext.define('PM.controller.Order', {
 
     onSaveClick: function () {
         var form = this.getDetailsForm();
+
+        if(!form.isValid()){
+            Ext.Msg.alert('Warning', "Fill form!");
+            return;
+        }
         var store = this.getOrderStore();
         var values = form.getValues();
 
@@ -79,7 +83,7 @@ Ext.define('PM.controller.Order', {
             store.add(Ext.create('PM.model.OrderModel', form.getValues()));
         }
 
-        store.sync();
+        this.orderSync(store);
     },
 
     onRemoveClick: function () {
@@ -93,7 +97,32 @@ Ext.define('PM.controller.Order', {
         var store = this.getOrderStore();
         console.log(store);
         store.remove(selected);
-        store.sync();
+        this.orderSync(store);
+    },
+
+    onValidationClick: function(){
+        var form = this.getDetailsForm();
+        if(form.isValid()){
+            Ext.Msg.alert('Warning', "Valid");
+        } else {
+            Ext.Msg.alert('Warning', "NotValid");
+        }
+    },
+
+    orderSync : function(order){
+        if(!order || !order.sync){
+            Ext.Msg.alert('Error', "Unknown error");
+            return;
+        }
+
+        order.sync({
+            success : function(){
+                Ext.Msg.alert('Success', "Operation done");
+            },
+            failure: function(){
+                Ext.Msg.alert('Error', "Operation failure");
+            },
+        })
     }
 
 });

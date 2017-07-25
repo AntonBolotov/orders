@@ -11,10 +11,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.myapp.orders.model.User;
 
+/** Контроллер обработки пользователей */
 @Controller
 public class UserController {
 
-
+    /**
+     * Получение списка пользователей
+     * @return
+     */
     @GetMapping(value = "/user/get/all")
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody

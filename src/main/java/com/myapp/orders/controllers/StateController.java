@@ -11,9 +11,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.myapp.orders.model.State;
 
+/** Контроллер обработки статусов */
 @Controller
 public class StateController {
 
+    /**
+     * Получение списка статусов
+     * @return
+     */
     @GetMapping(value = "/state/get/all")
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody

@@ -1,12 +1,19 @@
 package com.myapp.orders.model;
 
+/** Описание заявки */
 public class Order {
 
+    /** Идентификатор записи в харнилище, приходит с клиента */
     private String id;
+    /** Номер заявки */
     private Integer orderNumber;
+    /** Название заявки */
     private String orderName;
+    /** Исполнитель заявки */
     private Integer orderTo;
+    /** Создатель заявки */
     private Integer orderFrom;
+    /** Статус заявки */
     private Integer orderState;
 
     public Order() {

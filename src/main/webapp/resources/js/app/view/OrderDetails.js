@@ -7,8 +7,6 @@ Ext.define('PM.view.OrderDetails', {
     store: {
         type: 'orderStore'
     },
-    //url: '/order/update',
-    //method: 'GET',
     requires: [
         'Ext.form.field.Text',
         'Ext.form.field.ComboBox',
@@ -21,7 +19,11 @@ Ext.define('PM.view.OrderDetails', {
     tbar: [{
         text: 'Save',
         handler: 'onSaveClick'
-    }],
+    },
+        /*{
+            text: 'Test Validation',
+            handler: 'onValidationClick'
+        }*/],
     items: [{
         xtype: 'form',
         alias: 'orderForm',
@@ -38,17 +40,21 @@ Ext.define('PM.view.OrderDetails', {
                 xtype: 'textfield',
                 fieldLabel: '№',
                 name: 'orderNumber',
-                    enabled: false
+                enabled: false,
+                regex: /^[0-9]+$/,
+                allowBlank : false,
             },
             {
                 xtype: 'textfield',
                 fieldLabel: 'Name',
                 name: 'orderName',
-                enabled: false
+                enabled: false,
+                allowBlank : false,
             },
             {
                 xtype: 'combo',
                 fieldLabel: 'To',
+
                 name: 'orderTo',
                 store: {
                     type: 'userStore'
@@ -56,6 +62,7 @@ Ext.define('PM.view.OrderDetails', {
                 queryMode: 'local',
                 displayField: 'name',
                 valueField: 'id',
+                allowBlank : false,
 
             },
             {
@@ -68,6 +75,7 @@ Ext.define('PM.view.OrderDetails', {
                 queryMode: 'local',
                 displayField: 'name',
                 valueField: 'id',
+                allowBlank : false,
             },
             {
                 xtype: 'combo',
@@ -79,13 +87,12 @@ Ext.define('PM.view.OrderDetails', {
                 queryMode: 'local',
                 displayField: 'name',
                 valueField: 'id',
+                allowBlank : false,
             }]
     }],
 
-
-    loadRecord : function(item){
+    loadRecord: function (item) {
         console.log(item);
     },
-
 
 });
