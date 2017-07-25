@@ -10,7 +10,7 @@ Ext.define('PM.store.OrderStore', {
 
     proxy: {
         type: 'ajax',
-        method: 'GET',
+        method: 'POST',
         api: {
             read: '/order/get/all',
             update: '/order/update',

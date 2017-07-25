@@ -1,7 +1,8 @@
-package com.myapp.orders;
+package com.myapp.orders.model;
 
 public class Order {
 
+    private String id;
     private Integer orderNumber;
     private String orderName;
     private Integer orderTo;
@@ -17,6 +18,14 @@ public class Order {
         this.orderTo = orderTo;
         this.orderFrom = orderFrom;
         this.orderState = orderState;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Integer getOrderNumber() {
@@ -61,8 +70,9 @@ public class Order {
 
     @Override
     public String toString() {
-        return "OrderRequest{" +
-               "orderNumber=" + orderNumber +
+        return "Order{" +
+               "id='" + id + '\'' +
+               ", orderNumber=" + orderNumber +
                ", orderName='" + orderName + '\'' +
                ", orderTo=" + orderTo +
                ", orderFrom=" + orderFrom +

@@ -1,4 +1,4 @@
-package com.myapp.orders;
+package com.myapp.orders.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+import com.myapp.orders.model.User;
 
 @Controller
 public class UserController {

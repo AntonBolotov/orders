@@ -73,11 +73,8 @@ Ext.define('PM.controller.Order', {
         var orderRec = this.getOrderRecord(values.orderNumber);
 
         if (orderRec != null) {
-            orderRec.beginEdit();
             orderRec.set(form.getValues());
-            orderRec.endEdit();
-            orderRec.commit(true);
-            store.update();
+            form.updateRecord(orderRec);
         } else {
             store.add(Ext.create('PM.model.OrderModel', form.getValues()));
         }
@@ -95,7 +92,7 @@ Ext.define('PM.controller.Order', {
         }
         var store = this.getOrderStore();
         console.log(store);
-        store.remove(selected[0]);
+        store.remove(selected);
         store.sync();
     }
 

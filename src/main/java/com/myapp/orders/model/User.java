@@ -1,10 +1,10 @@
-package com.myapp.orders;
+package com.myapp.orders.model;
 
-public class State {
+public class User {
     private Integer id;
     private String name;
 
-    public State(Integer id, String name) {
+    public User(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
