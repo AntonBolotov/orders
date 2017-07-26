@@ -7,7 +7,5 @@ Ext.define('PM.model.OrderModel', {
         { name: 'orderTo', reference: 'User' },
         { name: 'orderFrom', reference: 'User' },
         { name: 'orderState', reference: 'State'}
-    ],
-
-
+    ]
 });

@@ -28,6 +28,7 @@ public class StateController {
         result.add(new State(1, "Process"));
         result.add(new State(2, "Fail"));
 
+        System.out.println("State get all: " + result);
         return result;
     }
 }

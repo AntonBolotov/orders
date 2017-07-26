@@ -34,6 +34,7 @@ public class UserController {
         result.add(new User(6, "Jeannette"));
         result.add(new User(7, "Nudeman"));
 
+        System.out.println("User get all: " + result);
         return result;
     }
 }

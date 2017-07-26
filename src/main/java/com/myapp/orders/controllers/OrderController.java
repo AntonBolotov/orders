@@ -28,7 +28,7 @@ public class OrderController {
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
     public List<Order> addOrder(@RequestBody Order order)  {
-        System.out.println(order);
+        System.out.println("Update order: " + order);
 
         ArrayList<Order> result = new ArrayList<>();
         result.add(order);
@@ -42,7 +42,7 @@ public class OrderController {
     @RequestMapping(value = "remove", method = {RequestMethod.POST})
     @ResponseStatus(value = HttpStatus.OK)
     public void removeOrder(@RequestBody Order order)  {
-        System.out.println(order);
+        System.out.println("Remove order: " + order);
     }
 
     /**
@@ -52,7 +52,7 @@ public class OrderController {
     @RequestMapping(value = "create", method = {RequestMethod.POST})
     @ResponseStatus(value = HttpStatus.OK)
     public void createOrder(@RequestBody Order order)  {
-        System.out.println(order);
+        System.out.println("Create order: " + order);
     }
 
     /**
@@ -72,6 +72,7 @@ public class OrderController {
         result.add( new Order(4, "Kiss", 3, 1, 2));
         result.add( new Order(5, "Nudeman", 3, 7, 1));
 
+        System.out.println("Order get all: " + result);
         return result;
     }
 }

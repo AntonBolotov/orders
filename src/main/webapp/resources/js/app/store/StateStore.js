@@ -8,12 +8,10 @@ Ext.define('PM.store.StateStore', {
         'PM.model.StateModel'
     ],
 
-    //fields: ['id', 'name'],
-
     proxy: {
         type: 'ajax',
         api: {
-            read: '/state/get/all',
+            read: '/state/get/all'
         },
         reader: {
             type: 'json',

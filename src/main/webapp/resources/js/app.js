@@ -20,7 +20,7 @@ Ext.application({
                 {
                     xtype: 'orderList',
                     width : 400,
-                    region: 'west',
+                    region: 'west'
                 },
                 {region: 'center',
                     xtype: 'orderdetails'

@@ -121,7 +121,7 @@ Ext.define('PM.controller.Order', {
             },
             failure: function(){
                 Ext.Msg.alert('Error', "Operation failure");
-            },
+            }
         })
     }
 
