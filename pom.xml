@@ -95,7 +95,7 @@
 
 
     <build>
-        <finalName>springmvc</finalName>
+        <finalName>orders</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
