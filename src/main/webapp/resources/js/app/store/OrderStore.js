@@ -20,6 +20,9 @@ Ext.define('PM.store.OrderStore', {
         reader: {
             type: 'json',
             rootProperty: 'orders'
+        },
+        writer: {
+            writeAllFields: true
         }
     }
 });

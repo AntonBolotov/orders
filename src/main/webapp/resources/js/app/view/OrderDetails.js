@@ -19,80 +19,64 @@ Ext.define('PM.view.OrderDetails', {
     tbar: [{
         text: 'Save',
         handler: 'onSaveClick'
-    },
-        /*{
-            text: 'Test Validation',
-            handler: 'onValidationClick'
-        }*/],
+    }],
     items: [{
         xtype: 'form',
         alias: 'orderForm',
         border: false,
         maxWidth: 600,
-        //height: 100,
         bodyPadding: 20,
         reference: 'form',
         defaults: {
             anchor: '95%'
         },
-        items: [
-            {
-                xtype: 'textfield',
-                fieldLabel: '№',
-                name: 'orderNumber',
-                enabled: false,
-                regex: /^[0-9]+$/,
-                allowBlank : false,
-            },
-            {
-                xtype: 'textfield',
-                fieldLabel: 'Name',
-                name: 'orderName',
-                enabled: false,
-                allowBlank : false,
-            },
-            {
-                xtype: 'combo',
-                fieldLabel: 'To',
+        items: [{
+            xtype: 'textfield',
+            fieldLabel: '№',
+            name: 'orderNumber',
+            enabled: false,
+            regex: /^[0-9]+$/,
+            allowBlank: false
+        }, {
+            xtype: 'textfield',
+            fieldLabel: 'Name',
+            name: 'orderName',
+            enabled: false,
+            allowBlank: false
+        }, {
+            xtype: 'combo',
+            fieldLabel: 'To',
 
-                name: 'orderTo',
-                store: {
-                    type: 'userStore'
-                },
-                queryMode: 'local',
-                displayField: 'name',
-                valueField: 'id',
-                allowBlank : false,
-
+            name: 'orderTo',
+            store: {
+                type: 'userStore'
             },
-            {
-                xtype: 'combo',
-                fieldLabel: 'From',
-                name: 'orderFrom',
-                store: {
-                    type: 'userStore'
-                },
-                queryMode: 'local',
-                displayField: 'name',
-                valueField: 'id',
-                allowBlank : false,
+            queryMode: 'local',
+            displayField: 'name',
+            valueField: 'id',
+            allowBlank: false
+        }, {
+            xtype: 'combo',
+            fieldLabel: 'From',
+            name: 'orderFrom',
+            store: {
+                type: 'userStore'
             },
-            {
-                xtype: 'combo',
-                fieldLabel: 'State',
-                name: 'orderState',
-                store: {
-                    type: 'stateStore'
-                },
-                queryMode: 'local',
-                displayField: 'name',
-                valueField: 'id',
-                allowBlank : false,
-            }]
-    }],
-
-    loadRecord: function (item) {
-        console.log(item);
-    },
-
+            queryMode: 'local',
+            displayField: 'name',
+            valueField: 'id',
+            allowBlank: false
+        }, {
+            xtype: 'combo',
+            fieldLabel: 'State',
+            name: 'orderState',
+            store: {
+                type: 'stateStore'
+            },
+            queryMode: 'local',
+            displayField: 'name',
+            valueField: 'id',
+            allowBlank: false
+        }]
+    }]
 });

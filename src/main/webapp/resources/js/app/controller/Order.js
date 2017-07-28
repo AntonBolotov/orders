@@ -12,17 +12,13 @@ Ext.define('PM.controller.Order', {
         'PM.model.StateModel'
     ],
 
-    onSelectionChange: function (grid, selected, eOpts) {
+    onSelectionChange: function (grid, selected) {
         var rec = selected[0];
         if (rec) {
             this.getDetailsForm().loadRecord(rec);
         } else {
             this.onAddClick();
         }
-    },
-
-    getOrderModel: function () {
-        return Ext.ModelManager.getModel('orderModel');
     },
 
     onAddClick: function () {
@@ -56,12 +52,12 @@ Ext.define('PM.controller.Order', {
     getOrderRecord: function (orderNUmber) {
         var store = this.getOrderStore();
         var recordIndex = store.find('orderNumber', orderNUmber);
+
         if (recordIndex > -1) {
             return store.getAt(recordIndex);
         } else {
             return null;
         }
-
     },
 
     onSaveClick: function () {
@@ -71,6 +67,7 @@ Ext.define('PM.controller.Order', {
             Ext.Msg.alert('Warning', "Fill form!");
             return;
         }
+
         var store = this.getOrderStore();
         var values = form.getValues();
 
@@ -90,23 +87,13 @@ Ext.define('PM.controller.Order', {
         var orderList = this.getOrderList();
         var selected = orderList.getSelection();
 
-        console.log(selected);
         if (!selected || !selected.length) {
             Ext.Msg.alert('Warning', "Order not selected");
         }
+
         var store = this.getOrderStore();
-        console.log(store);
         store.remove(selected);
         this.orderSync(store);
-    },
-
-    onValidationClick: function(){
-        var form = this.getDetailsForm();
-        if(form.isValid()){
-            Ext.Msg.alert('Warning', "Valid");
-        } else {
-            Ext.Msg.alert('Warning', "NotValid");
-        }
     },
 
     orderSync : function(order){
@@ -124,5 +111,4 @@ Ext.define('PM.controller.Order', {
             }
         })
     }
-
 });

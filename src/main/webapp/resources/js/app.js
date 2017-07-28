@@ -16,16 +16,14 @@ Ext.application({
             requires: [
                 'PM.view.OrderList'
             ],
-            items: [
-                {
-                    xtype: 'orderList',
-                    width : 400,
-                    region: 'west'
-                },
-                {region: 'center',
-                    xtype: 'orderdetails'
-                }
-            ]
+            items: [{
+                xtype: 'orderList',
+                width: 400,
+                region: 'west'
+            }, {
+                region: 'center',
+                xtype: 'orderdetails'
+            }]
         });
     }
 });

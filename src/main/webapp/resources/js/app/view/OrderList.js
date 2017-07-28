@@ -20,13 +20,14 @@ Ext.define('PM.view.OrderList', {
         text: 'Remove',
         handler: 'onRemoveClick'
     }],
-    columns: [
-        {header: 'Id', dataIndex: 'orderNumber', flex: 1,},
-        {header: 'Name', dataIndex: 'orderName', flex: 1}
-    ],
+    columns: [{
+        header: 'Id', dataIndex: 'orderNumber', flex: 1
+    }, {
+        header: 'Name', dataIndex: 'orderName', flex: 1
+    }],
     selModel: {
         listeners: {
             selectionchange: 'onSelectionChange'
         }
-    },
+    }
 });
