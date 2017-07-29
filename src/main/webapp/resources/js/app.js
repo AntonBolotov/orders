@@ -7,23 +7,6 @@ Ext.application({
         'PM.view.OrderDetails'
     ],
 
-    launch: function () {
-        Ext.create('Ext.container.Viewport', {
-            layout: 'border',
-            defaults: {
-                padding: '3'
-            },
-            requires: [
-                'PM.view.OrderList'
-            ],
-            items: [{
-                xtype: 'orderList',
-                width: 400,
-                region: 'west'
-            }, {
-                region: 'center',
-                xtype: 'orderdetails'
-            }]
-        });
-    }
+    autoCreateViewport: true
+    //https://fiddle.sencha.com/#fiddle/22o7&view/editor
 });

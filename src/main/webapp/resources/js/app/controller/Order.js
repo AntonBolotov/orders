@@ -1,25 +1,9 @@
 Ext.define('PM.controller.Order', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.order',
-    stores: ['OrderStore', 'UserStore', 'StateStore'],
-    models: ['OrderModel', 'UserModel', 'StateModel'],
     requires: [
-        'PM.store.OrderStore',
-        'PM.model.OrderModel',
-        'PM.store.UserStore',
-        'PM.model.UserModel',
-        'PM.store.StateStore',
-        'PM.model.StateModel'
+        'PM.model.OrderModel'
     ],
-
-    onSelectionChange: function (grid, selected) {
-        var rec = selected[0];
-        if (rec) {
-            this.getDetailsForm().loadRecord(rec);
-        } else {
-            this.onAddClick();
-        }
-    },
 
     onAddClick: function () {
         this.getOrderList().getSelectionModel().deselectAll();
@@ -36,7 +20,7 @@ Ext.define('PM.controller.Order', {
     },
 
     getOrderList: function () {
-        var orderList = Ext.ComponentQuery.query('orderList');
+        var orderList = Ext.ComponentQuery.query('orderlist');
 
         if (orderList && orderList.length == 1) {
             return orderList[0];
@@ -46,7 +30,7 @@ Ext.define('PM.controller.Order', {
     },
 
     getOrderStore: function () {
-        return Ext.getStore('orderStore');
+        return this.getStore('orderStore');
     },
 
     getOrderRecord: function (orderNUmber) {
@@ -62,7 +46,10 @@ Ext.define('PM.controller.Order', {
 
     onSaveClick: function () {
         var form = this.getDetailsForm();
+        var orderList = this.getOrderList();
+        var selected = orderList.getSelection();
 
+        console.log(form.isDirty());
         if(!form.isValid()){
             Ext.Msg.alert('Warning', "Fill form!");
             return;
@@ -73,17 +60,19 @@ Ext.define('PM.controller.Order', {
 
         var orderRec = this.getOrderRecord(values.orderNumber);
 
+
         if (orderRec != null) {
             orderRec.set(form.getValues());
             form.updateRecord(orderRec);
         } else {
-            store.add(Ext.create('PM.model.OrderModel', form.getValues()));
+            store.add(values);
         }
 
         this.orderSync(store);
     },
 
-    onRemoveClick: function () {
+    onRemoveClick: function (grid, context) {
+
         var orderList = this.getOrderList();
         var selected = orderList.getSelection();
 
@@ -110,5 +99,12 @@ Ext.define('PM.controller.Order', {
                 Ext.Msg.alert('Error', "Operation failure");
             }
         })
+    },
+
+    onResetForm: function(){
+        //var store = this.getOrderStore();
+        //store.rejectChanges()
+
+        this.getDetailsForm().reset(true);
     }
 });

@@ -3,14 +3,11 @@ Ext.define('PM.view.OrderDetails', {
     alias: 'widget.orderdetails',
     controller: 'order',
     title: 'Order Details',
-    stores: ['OrderStore', 'UserStore'],
-    store: {
-        type: 'orderStore'
-    },
+
     requires: [
         'Ext.form.field.Text',
         'Ext.form.field.ComboBox',
-        'PM.store.OrderStore',
+        //'PM.store.OrderStore',
         'PM.store.UserStore',
         'PM.store.StateStore',
         'PM.controller.Order'
@@ -19,6 +16,10 @@ Ext.define('PM.view.OrderDetails', {
     tbar: [{
         text: 'Save',
         handler: 'onSaveClick'
+    }, {
+        text: 'Cancel',
+        handler: 'onResetForm',
+        enabled: false
     }],
     items: [{
         xtype: 'form',
@@ -31,18 +32,22 @@ Ext.define('PM.view.OrderDetails', {
             anchor: '95%'
         },
         items: [{
-            xtype: 'textfield',
+            xtype: 'numberfield',
             fieldLabel: '№',
             name: 'orderNumber',
             enabled: false,
+            required: true,
             regex: /^[0-9]+$/,
-            allowBlank: false
+            allowBlank: false,
+            bind: '{orders.selection.orderNumber}'
         }, {
             xtype: 'textfield',
             fieldLabel: 'Name',
             name: 'orderName',
             enabled: false,
-            allowBlank: false
+            required: true,
+            allowBlank: false,
+            bind: '{orders.selection.orderName}'
         }, {
             xtype: 'combo',
             fieldLabel: 'To',
@@ -52,9 +57,11 @@ Ext.define('PM.view.OrderDetails', {
                 type: 'userStore'
             },
             queryMode: 'local',
+            required: true,
             displayField: 'name',
             valueField: 'id',
-            allowBlank: false
+            allowBlank: false,
+            bind: '{orders.selection.orderTo}'
         }, {
             xtype: 'combo',
             fieldLabel: 'From',
@@ -63,9 +70,11 @@ Ext.define('PM.view.OrderDetails', {
                 type: 'userStore'
             },
             queryMode: 'local',
+            required: true,
             displayField: 'name',
             valueField: 'id',
-            allowBlank: false
+            allowBlank: false,
+            bind: '{orders.selection.orderFrom}'
         }, {
             xtype: 'combo',
             fieldLabel: 'State',
@@ -74,9 +83,11 @@ Ext.define('PM.view.OrderDetails', {
                 type: 'stateStore'
             },
             queryMode: 'local',
+            required: true,
             displayField: 'name',
             valueField: 'id',
-            allowBlank: false
+            allowBlank: false,
+            bind: '{orders.selection.orderState}'
         }]
     }]
 });

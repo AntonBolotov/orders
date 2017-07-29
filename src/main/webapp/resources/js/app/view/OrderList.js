@@ -1,16 +1,9 @@
 Ext.define('PM.view.OrderList', {
     extend: 'Ext.grid.Panel',
-    alias: 'widget.orderList',
     controller: 'order',
-    title: 'Orders',
 
-    store: {
-        type: 'orderStore'
-    },
-
-    xtype: 'orderList',
+    xtype: 'orderlist',
     requires: [
-        'PM.store.OrderStore',
         'PM.controller.Order'
     ],
     tbar: [{
@@ -21,13 +14,12 @@ Ext.define('PM.view.OrderList', {
         handler: 'onRemoveClick'
     }],
     columns: [{
-        header: 'Id', dataIndex: 'orderNumber', flex: 1
+        header: 'Id',
+        dataIndex: 'orderNumber',
+        flex: 1
     }, {
-        header: 'Name', dataIndex: 'orderName', flex: 1
-    }],
-    selModel: {
-        listeners: {
-            selectionchange: 'onSelectionChange'
-        }
-    }
+        header: 'Name',
+        dataIndex: 'orderName',
+        flex: 1
+    }]
 });
