@@ -9,7 +9,6 @@ Ext.define('Orders.view.Viewport', {
         'Orders.view.orders.OrdersModel'
     ],
 
-    //defaultListenerScope: true,
     viewModel :'ordersmodel',
 
     items: [{
@@ -21,7 +20,6 @@ Ext.define('Orders.view.Viewport', {
         bind: '{orderStore}'
     }, {
         region: 'center',
-        xtype: 'orderdetails',
-        //bind: '{orders.selection}'
+        xtype: 'orderdetails'
     }]
 });

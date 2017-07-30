@@ -3,14 +3,11 @@ Ext.define('Orders.view.orders.OrderDetails', {
     alias: 'widget.orderdetails',
     controller: 'order',
     title: 'Order Details',
-
     requires: [
         'Ext.form.field.Text',
         'Ext.form.field.ComboBox',
-        //'Orders.store.OrderStore',
         'Orders.store.User',
-        'Orders.store.State',
-        'Orders.view.orders.OrderController'
+        'Orders.store.State'
     ],
     config: {
         currentOrder: null
@@ -49,7 +46,6 @@ Ext.define('Orders.view.orders.OrderDetails', {
             bind: {
                 value: '{currentOrder.orderNumber}'
             }
-
         }, {
             xtype: 'textfield',
             fieldLabel: 'Name',

@@ -1,6 +1,8 @@
 Ext.define('Orders.model.Order', {
     extend: 'Ext.data.Model',
-
+    schema: {
+        namespace: 'Orders.model'
+    },
     idProperty: "orderNumber",
     identifier: {
         type: 'sequential',
@@ -25,6 +27,5 @@ Ext.define('Orders.model.Order', {
     }, {
         name: 'orderState',
         reference: 'State'
-    }],
-//https://www.sencha.com/forum/showthread.php?338054-ExtJS6-2-Model-Associations-Reference
+    }]
 });

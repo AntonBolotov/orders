@@ -4,27 +4,22 @@ Ext.define('Orders.view.orders.OrderController', {
     requires: [
         'Orders.model.Order'
     ],
-    onGridRowSelect: function(sender, record) {
+
+    onGridRowSelect: function (sender, record) {
         var me = this;
-        //me.setActiveEastCard(1);
         me.getViewModel().set('currentOrder', record);
     },
-    onAddClick: function (sender, record) {
-        //this.getOrderList().getSelectionModel().deselectAll();
-        //this.getDetailsForm().reset();
 
-        var me = this,
-            vm = me.getViewModel(),
-            store = vm.getStore('orders'),
-            record = Ext.create("Orders.model.Order", {
-                orderName: '',
-                orderTo:{},
-                orderFrom: {},
-                orderState: {}
-            });
-        vm.set('currentOrder', record);
-        store.insert(0, record);
-        me.getView().down('orderlist').getView().select(0)
+    onAddClick: function (sender, record) {
+
+        var vm = this.getViewModel(),
+            store = vm.getStore('orderStore'),
+            order = Ext.create("Orders.model.Order");
+
+        //vm.set('currentOrder', record);
+
+        store.insert(0, order);
+        this.getView().getView().select(0);
     },
 
     getDetailsForm: function () {
@@ -50,25 +45,10 @@ Ext.define('Orders.view.orders.OrderController', {
         return this.getStore('orderStore');
     },
 
-    getOrderRecord: function (orderNUmber) {
-        var store = this.getOrderStore();
-        var recordIndex = store.find('orderNumber', orderNUmber);
-
-        if (recordIndex > -1) {
-            return store.getAt(recordIndex);
-        } else {
-            return null;
-        }
-    },
-
     onSaveClick: function () {
         var form = this.getDetailsForm();
-        var orderList = this.getOrderList();
-        var selected = orderList.getSelection();
 
-        console.log(form.isDirty());
-
-        if(!form.isValid()){
+        if (!form.isValid()) {
             Ext.Msg.alert('Warning', "Fill form!");
             return;
         }
@@ -76,9 +56,8 @@ Ext.define('Orders.view.orders.OrderController', {
         var store = this.getOrderStore();
         var values = form.getValues();
         var vm = this.getViewModel();
-        var orderRec =  vm.get('currentOrder');// this.getOrderRecord(values.orderNumber);
+        var orderRec = vm.get('currentOrder');
 
-        //store.commitChanges();
 
         if (orderRec != null) {
             orderRec.set(form.getValues());
@@ -88,7 +67,6 @@ Ext.define('Orders.view.orders.OrderController', {
         }
 
         this.orderSync(store);
-
     },
 
     onRemoveClick: function (grid, context) {
@@ -105,26 +83,24 @@ Ext.define('Orders.view.orders.OrderController', {
         this.orderSync(store);
     },
 
-    orderSync : function(order){
-        if(!order || !order.sync){
+    orderSync: function (order) {
+        if (!order || !order.sync) {
             Ext.Msg.alert('Error', "Unknown error");
             return;
         }
 
         order.sync({
-            success : function(){
+            success: function () {
                 Ext.Msg.alert('Success', "Operation done");
             },
-            failure: function(){
+            failure: function () {
                 Ext.Msg.alert('Error', "Operation failure");
             }
         })
     },
 
-    onResetForm: function(){
+    onResetForm: function () {
         var store = this.getOrderStore();
         store.rejectChanges();
-
-        //this.getDetailsForm().reset(true);
     }
 });

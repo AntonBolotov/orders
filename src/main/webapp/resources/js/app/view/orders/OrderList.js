@@ -1,11 +1,12 @@
 Ext.define('Orders.view.orders.OrderList', {
     extend: 'Ext.grid.Panel',
     controller: 'order',
-
     xtype: 'orderlist',
     requires: [
         'Orders.view.orders.OrderController'
     ],
+    publishes:['currentOrder'],
+
     tbar: [{
         text: 'New',
         handler: 'onAddClick'
