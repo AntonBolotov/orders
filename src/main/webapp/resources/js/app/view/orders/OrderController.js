@@ -102,5 +102,16 @@ Ext.define('Orders.view.orders.OrderController', {
     onResetForm: function () {
         var store = this.getOrderStore();
         store.rejectChanges();
+    },
+
+    initViewModel: function(viewModel) {
+        viewModel.notify();
+
+        var form = this.getView().down('orderdetails');
+        form.queryBy(function(component) {
+            return !!component.isFormField;
+        }).forEach(function(formField) {
+            formField.resetOriginalValue();
+        })
     }
 });
