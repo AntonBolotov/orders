@@ -1,11 +1,11 @@
-Ext.define('PM.store.StateStore', {
+Ext.define('Orders.store.State', {
     extend: 'Ext.data.Store',
     storeId: 'stateStore',
-    model: 'PM.model.StateModel',
+    model: 'Orders.model.State',
     autoLoad: true,
     alias: 'store.stateStore',
     requires: [
-        'PM.model.StateModel'
+        'Orders.model.State'
     ],
 
     proxy: {

@@ -1,4 +1,4 @@
-Ext.define('PM.view.OrderDetails', {
+Ext.define('Orders.view.orders.OrderDetails', {
     extend: 'Ext.form.Panel',
     alias: 'widget.orderdetails',
     controller: 'order',
@@ -7,15 +7,22 @@ Ext.define('PM.view.OrderDetails', {
     requires: [
         'Ext.form.field.Text',
         'Ext.form.field.ComboBox',
-        //'PM.store.OrderStore',
-        'PM.store.UserStore',
-        'PM.store.StateStore',
-        'PM.controller.Order'
+        //'Orders.store.OrderStore',
+        'Orders.store.User',
+        'Orders.store.State',
+        'Orders.view.orders.OrderController'
     ],
+    config: {
+        currentOrder: null
+    },
+    bind:{
+        currentOrder:'{currentOrder}'
+    },
 
     tbar: [{
         text: 'Save',
-        handler: 'onSaveClick'
+        handler: 'onSaveClick',
+        formBind:true
     }, {
         text: 'Cancel',
         handler: 'onResetForm',
@@ -32,14 +39,17 @@ Ext.define('PM.view.OrderDetails', {
             anchor: '95%'
         },
         items: [{
-            xtype: 'numberfield',
+            xtype: 'displayfield',
             fieldLabel: '№',
             name: 'orderNumber',
             enabled: false,
             required: true,
             regex: /^[0-9]+$/,
             allowBlank: false,
-            bind: '{orders.selection.orderNumber}'
+            bind: {
+                value: '{currentOrder.orderNumber}'
+            }
+
         }, {
             xtype: 'textfield',
             fieldLabel: 'Name',
@@ -47,7 +57,7 @@ Ext.define('PM.view.OrderDetails', {
             enabled: false,
             required: true,
             allowBlank: false,
-            bind: '{orders.selection.orderName}'
+            bind: '{currentOrder.orderName}'
         }, {
             xtype: 'combo',
             fieldLabel: 'To',
@@ -61,7 +71,7 @@ Ext.define('PM.view.OrderDetails', {
             displayField: 'name',
             valueField: 'id',
             allowBlank: false,
-            bind: '{orders.selection.orderTo}'
+            bind: '{currentOrder.orderTo}'
         }, {
             xtype: 'combo',
             fieldLabel: 'From',
@@ -74,7 +84,7 @@ Ext.define('PM.view.OrderDetails', {
             displayField: 'name',
             valueField: 'id',
             allowBlank: false,
-            bind: '{orders.selection.orderFrom}'
+            bind: '{currentOrder.orderFrom}'
         }, {
             xtype: 'combo',
             fieldLabel: 'State',
@@ -87,7 +97,7 @@ Ext.define('PM.view.OrderDetails', {
             displayField: 'name',
             valueField: 'id',
             allowBlank: false,
-            bind: '{orders.selection.orderState}'
+            bind: '{currentOrder.orderState}'
         }]
     }]
 });

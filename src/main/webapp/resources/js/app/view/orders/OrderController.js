@@ -1,13 +1,30 @@
-Ext.define('PM.controller.Order', {
+Ext.define('Orders.view.orders.OrderController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.order',
     requires: [
-        'PM.model.OrderModel'
+        'Orders.model.Order'
     ],
+    onGridRowSelect: function(sender, record) {
+        var me = this;
+        //me.setActiveEastCard(1);
+        me.getViewModel().set('currentOrder', record);
+    },
+    onAddClick: function (sender, record) {
+        //this.getOrderList().getSelectionModel().deselectAll();
+        //this.getDetailsForm().reset();
 
-    onAddClick: function () {
-        this.getOrderList().getSelectionModel().deselectAll();
-        this.getDetailsForm().reset();
+        var me = this,
+            vm = me.getViewModel(),
+            store = vm.getStore('orders'),
+            record = Ext.create("Orders.model.Order", {
+                orderName: '',
+                orderTo:{},
+                orderFrom: {},
+                orderState: {}
+            });
+        vm.set('currentOrder', record);
+        store.insert(0, record);
+        me.getView().down('orderlist').getView().select(0)
     },
 
     getDetailsForm: function () {
@@ -50,6 +67,7 @@ Ext.define('PM.controller.Order', {
         var selected = orderList.getSelection();
 
         console.log(form.isDirty());
+
         if(!form.isValid()){
             Ext.Msg.alert('Warning', "Fill form!");
             return;
@@ -57,9 +75,10 @@ Ext.define('PM.controller.Order', {
 
         var store = this.getOrderStore();
         var values = form.getValues();
+        var vm = this.getViewModel();
+        var orderRec =  vm.get('currentOrder');// this.getOrderRecord(values.orderNumber);
 
-        var orderRec = this.getOrderRecord(values.orderNumber);
-
+        //store.commitChanges();
 
         if (orderRec != null) {
             orderRec.set(form.getValues());
@@ -69,6 +88,7 @@ Ext.define('PM.controller.Order', {
         }
 
         this.orderSync(store);
+
     },
 
     onRemoveClick: function (grid, context) {
@@ -102,9 +122,9 @@ Ext.define('PM.controller.Order', {
     },
 
     onResetForm: function(){
-        //var store = this.getOrderStore();
-        //store.rejectChanges()
+        var store = this.getOrderStore();
+        store.rejectChanges();
 
-        this.getDetailsForm().reset(true);
+        //this.getDetailsForm().reset(true);
     }
 });

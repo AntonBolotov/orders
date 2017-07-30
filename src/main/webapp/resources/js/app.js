@@ -1,12 +1,13 @@
 Ext.application({
-    name: 'PM',
+    name: 'Orders',
 
     appFolder: 'resources/js/app',
     requires: [
-        'PM.view.OrderList',
-        'PM.view.OrderDetails'
+        'Orders.view.orders.OrderList',
+        'Orders.view.orders.OrderDetails'
     ],
 
     autoCreateViewport: true
     //https://fiddle.sencha.com/#fiddle/22o7&view/editor
+    //https://github.com/wregen/dummy-ext-crud
 });

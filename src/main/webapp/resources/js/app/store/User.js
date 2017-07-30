@@ -1,11 +1,11 @@
-Ext.define('PM.store.UserStore', {
+Ext.define('Orders.store.User', {
     extend: 'Ext.data.Store',
     storeId: 'userStore',
-    model: 'PM.model.UserModel',
+    model: 'Orders.model.User',
     autoLoad: true,
     alias: 'store.userStore',
     requires: [
-        'PM.model.UserModel'
+        'Orders.model.User'
     ],
 
     proxy: {

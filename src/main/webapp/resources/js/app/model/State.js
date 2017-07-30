@@ -1,6 +1,5 @@
-Ext.define('PM.model.UserModel', {
+Ext.define('Orders.model.State', {
     extend: 'Ext.data.Model',
-    alias: 'userModel',
     fields: [{
         name: 'id',
         type: 'int'

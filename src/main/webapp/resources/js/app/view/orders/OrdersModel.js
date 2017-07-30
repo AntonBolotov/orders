@@ -1,24 +1,9 @@
-Ext.define('PM.model.OrderModel', {
-    extend : 'Ext.app.ViewModel',
-    alias: 'viewmodel.orderModel',
-    fields: [{
-        name: 'orderNumber',
-        type: 'integer'
-    }, {
-        name: 'orderName',
-        type: 'string'
-    }, {
-        name: 'orderTo',
-        reference: 'User'
-    }, {
-        name: 'orderFrom',
-        reference: 'User'
-    }, {
-        name: 'orderState',
-        reference: 'State'
-    }],
-
-
+Ext.define('Orders.view.orders.OrdersModel', {
+    extend: 'Ext.app.ViewModel',
+    alias: 'viewmodel.ordersmodel',
+    requires: [
+        'Orders.model.Order'
+    ],
     stores : {
         orderStore : {
             autoLoad : true,

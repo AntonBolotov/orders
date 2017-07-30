@@ -1,17 +1,16 @@
-Ext.define('PM.view.Viewport', {
+Ext.define('Orders.view.Viewport', {
     extend: 'Ext.container.Viewport',
     layout: 'border',
     defaults: {
         padding: '3'
     },
     requires: [
-        'PM.view.OrderList'
+        'Orders.view.orders.OrderList',
+        'Orders.view.orders.OrdersModel'
     ],
 
     //defaultListenerScope: true,
-    viewModel : {
-        type : 'orderModel'
-    },
+    viewModel :'ordersmodel',
 
     items: [{
         xtype: 'orderlist',

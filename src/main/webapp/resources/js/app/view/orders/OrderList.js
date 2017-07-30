@@ -1,10 +1,10 @@
-Ext.define('PM.view.OrderList', {
+Ext.define('Orders.view.orders.OrderList', {
     extend: 'Ext.grid.Panel',
     controller: 'order',
 
     xtype: 'orderlist',
     requires: [
-        'PM.controller.Order'
+        'Orders.view.orders.OrderController'
     ],
     tbar: [{
         text: 'New',
@@ -21,5 +21,8 @@ Ext.define('PM.view.OrderList', {
         header: 'Name',
         dataIndex: 'orderName',
         flex: 1
-    }]
+    }],
+    listeners: {
+        select: 'onGridRowSelect'
+    }
 });
