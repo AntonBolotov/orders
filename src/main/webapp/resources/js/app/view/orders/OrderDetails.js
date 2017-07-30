@@ -57,7 +57,7 @@ Ext.define('Orders.view.orders.OrderDetails', {
         }, {
             xtype: 'combo',
             fieldLabel: 'To',
-
+            editable: false,
             name: 'orderTo',
             store: {
                 type: 'userStore'
@@ -77,6 +77,7 @@ Ext.define('Orders.view.orders.OrderDetails', {
             },
             queryMode: 'local',
             required: true,
+            editable: false,
             displayField: 'name',
             valueField: 'id',
             allowBlank: false,
@@ -90,6 +91,7 @@ Ext.define('Orders.view.orders.OrderDetails', {
             },
             queryMode: 'local',
             required: true,
+            editable: false,
             displayField: 'name',
             valueField: 'id',
             allowBlank: false,
