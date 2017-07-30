@@ -18,7 +18,8 @@ Ext.define('Orders.view.orders.OrderController', {
 
         //vm.set('currentOrder', record);
 
-        store.insert(0, order);
+        var rec =store.insert(0, order)[0];
+        vm.set('currentOrder', rec);
         this.getView().getView().select(0);
     },
 

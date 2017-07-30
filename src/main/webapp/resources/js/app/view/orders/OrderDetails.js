@@ -19,7 +19,10 @@ Ext.define('Orders.view.orders.OrderDetails', {
     tbar: [{
         text: 'Save',
         handler: 'onSaveClick',
-        formBind:true
+        formBind:true,
+        bind:{
+            disabled:'{!dirty}' //http://extjs.eu/ext-examples/#complex-data-binding-5
+        }
     }, {
         text: 'Cancel',
         handler: 'onResetForm',
