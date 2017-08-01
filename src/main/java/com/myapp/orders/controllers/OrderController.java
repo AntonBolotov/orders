@@ -21,43 +21,41 @@ public class OrderController {
 
     /**
      * Изменение заявки
-     * @param order данные по заявке
-     * @return
+     * @param orders данные по заявкам
+     * @return orders
      */
     @RequestMapping(value = "update", method = {RequestMethod.POST})
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
-    public List<Order> addOrder(@RequestBody Order order)  {
-        System.out.println("Update order: " + order);
+    public List<Order> addOrder(@RequestBody  List<Order> orders)  {
+        System.out.println("Update order: " + orders);
 
-        ArrayList<Order> result = new ArrayList<>();
-        result.add(order);
-        return result;
+        return orders;
     }
 
     /**
      * Удаление заявки
-     * @param order данные по заявке
+     * @param orders данные по заявкам
      */
     @RequestMapping(value = "remove", method = {RequestMethod.POST})
     @ResponseStatus(value = HttpStatus.OK)
-    public void removeOrder(@RequestBody Order order)  {
-        System.out.println("Remove order: " + order);
+    public void removeOrder(@RequestBody List<Order> orders)  {
+        System.out.println("Remove order: " + orders);
     }
 
     /**
      * Создание заявки
-     * @param order данные по заявке
+     * @param orders данные по заявкам
      */
     @RequestMapping(value = "create", method = {RequestMethod.POST})
     @ResponseStatus(value = HttpStatus.OK)
-    public void createOrder(@RequestBody Order order)  {
-        System.out.println("Create order: " + order);
+    public void createOrder(@RequestBody List<Order> orders)  {
+        System.out.println("Create order: " + orders);
     }
 
     /**
      * получение списка заявок
-     * @return
+     * @return orders
      */
     @GetMapping(value = "get/all")
     @ResponseStatus(value = HttpStatus.OK)

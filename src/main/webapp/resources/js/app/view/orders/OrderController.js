@@ -1,13 +1,11 @@
 Ext.define('Orders.view.orders.OrderController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.order',
-    requires: [
-        'Orders.model.Order'
-    ],
 
     onGridRowSelect: function (sender, record) {
         var me = this;
         me.getViewModel().set('currentOrder', record);
+        me.getDetailsView().show();
     },
 
     onAddClick: function (sender, record) {
@@ -16,20 +14,27 @@ Ext.define('Orders.view.orders.OrderController', {
             store = vm.getStore('orderStore'),
             order = Ext.create("Orders.model.Order");
 
-        //vm.set('currentOrder', record);
-
         var rec =store.insert(0, order)[0];
         vm.set('currentOrder', rec);
         this.getView().getView().select(0);
     },
 
     getDetailsForm: function () {
-        var orderDetails = Ext.ComponentQuery.query('orderdetails');
-        if (orderDetails && orderDetails.length == 1) {
-            return orderDetails[0].getForm();
+        var detailsView = this.getDetailsView();
+        if(detailsView){
+            return detailsView.getForm();
         }
 
         return {};
+    },
+
+    getDetailsView : function(){
+        var orderDetails = Ext.ComponentQuery.query('orderdetails');
+        if (orderDetails && orderDetails.length == 1) {
+            return orderDetails[0];
+        }
+
+        return null;
     },
 
     getOrderList: function () {
@@ -82,6 +87,9 @@ Ext.define('Orders.view.orders.OrderController', {
         var store = this.getOrderStore();
         store.remove(selected);
         this.orderSync(store);
+
+        this.getOrderList().getSelectionModel().deselectAll();
+        this.getView().getView().select(0);
     },
 
     orderSync: function (order) {
@@ -100,9 +108,30 @@ Ext.define('Orders.view.orders.OrderController', {
         })
     },
 
+    getInvalidFields: function(form) {
+
+        var invalidFields = [];
+        Ext.suspendLayouts();
+        form.getFields().filterBy(function(field) {
+            if (field.validate()) return;
+            invalidFields.push(field);
+        });
+        Ext.resumeLayouts(true);
+        return invalidFields;
+    },
+
     onResetForm: function () {
-        var store = this.getOrderStore();
-        store.rejectChanges();
+        var form = this.getDetailsForm();
+
+        if (!form.isValid()) {
+            var invalidFields = this.getInvalidFields(form);
+            invalidFields.forEach(function(field) {
+                field.setValue(field.bind.value.lastValue);
+            });
+        } else {
+            var store = this.getOrderStore();
+            store.rejectChanges();
+        }
     },
 
     initViewModel: function(viewModel) {

@@ -7,30 +7,33 @@ Ext.define('Orders.view.orders.OrderDetails', {
         'Ext.form.field.Text',
         'Ext.form.field.ComboBox',
         'Orders.store.User',
-        'Orders.store.State'
+        'Orders.store.State',
+        'Orders.view.orders.OrderController',
+        'Orders.view.orders.OrdersModel'
     ],
     config: {
         currentOrder: null
     },
-    bind:{
-        currentOrder:'{currentOrder}'
+    bind: {
+        currentOrder: '{currentOrder}'
     },
-
+    border: '0 0 0 1',
     tbar: [{
         text: 'Save',
         handler: 'onSaveClick',
-        formBind:true,
-        bind:{
-            disabled:'{!dirty}' //http://extjs.eu/ext-examples/#complex-data-binding-5
+        disabled: true,
+        bind: {
+            disabled: '{!status.dirtyAndViewValid}'
         }
     }, {
         text: 'Cancel',
-        handler: 'onResetForm',
-        enabled: false
+        handler: 'onResetForm'
     }],
+    modelValidation: true,
+    hidden : true,
     items: [{
         xtype: 'form',
-        alias: 'orderForm',
+        alias: 'orderform',
         border: false,
         maxWidth: 600,
         bodyPadding: 20,

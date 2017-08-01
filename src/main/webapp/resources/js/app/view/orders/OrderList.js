@@ -3,10 +3,11 @@ Ext.define('Orders.view.orders.OrderList', {
     controller: 'order',
     xtype: 'orderlist',
     requires: [
-        'Orders.view.orders.OrderController'
+        'Orders.view.orders.OrderController',
+        'Orders.view.orders.OrdersModel'
     ],
     publishes:['currentOrder'],
-
+    border: '0 0 0 1',
     tbar: [{
         text: 'New',
         handler: 'onAddClick'

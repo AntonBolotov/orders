@@ -12,20 +12,26 @@ Ext.define('Orders.model.Order', {
         'Orders.store.User',
         'Orders.store.State'
     ],
+
     fields: [{
         name: 'orderNumber',
         type: 'integer'
     }, {
         name: 'orderName',
         type: 'string'
-    }, {
-        name: 'orderTo',
-        reference: 'User'
-    }, {
-        name: 'orderFrom',
-        reference: 'User'
-    }, {
-        name: 'orderState',
-        reference: 'State'
+    }],
+
+    associations: [{
+        type: 'hasMany',
+        model: 'User',
+        name: 'orderTo'
+    },{
+        type: 'hasMany',
+        model: 'User',
+        name: 'orderFrom'
+    },{
+        type: 'hasMany',
+        model: 'State',
+        name: 'orderState'
     }]
 });

@@ -5,22 +5,23 @@ Ext.define('Orders.view.orders.OrdersModel', {
         'Orders.model.Order'
     ],
     formulas: {
-        dirty: {
+        status: {
             bind: {
                 bindTo: '{currentOrder}',
                 deep: true
             },
-            get: function (data) {
-                return data ? data.dirty : false
-            }
-        },
-        storeDirty:{
-            bind: {
-                bindTo: '{currentOrder}',
-                deep: true
-            },
-            get: function (data) {
-                return this.getStore('orderStore').isDirty()
+            get: function (order) {
+                //Не хорошо так напрямую дергать форму, но как подругому не понял
+                var orderDetails = this.getView().down('orderdetails');
+                var result = {
+                    dirty: order ? order.dirty : false,
+                    valid: order && order.isModel ? order.isValid() : false,
+                    viewValid: orderDetails ? orderDetails.isValid() : false
+                };
+
+                result.dirtyAndValid = result.dirty && result.valid;
+                result.dirtyAndViewValid = result.dirty && result.viewValid;
+                return result;
             }
         }
     },
@@ -28,6 +29,7 @@ Ext.define('Orders.view.orders.OrdersModel', {
         orderStore: {
             autoLoad: true,
             autoSync: false,
+            expandData: true,
             proxy: {
                 type: 'ajax',
                 method: 'POST',
@@ -42,15 +44,9 @@ Ext.define('Orders.view.orders.OrdersModel', {
                     rootProperty: 'orders'
                 },
                 writer: {
-                    writeAllFields: true
+                    writeAllFields: true,
+                    allowSingle: false
                 }
-            },
-            isDirty: function(){
-                var dirty = this.getModifiedRecords().length;
-                dirty = dirty || this.getNewRecords().length;
-                dirty = dirty || this.getRemovedRecords().length;
-
-                return !!dirty;
             }
         }
     }
